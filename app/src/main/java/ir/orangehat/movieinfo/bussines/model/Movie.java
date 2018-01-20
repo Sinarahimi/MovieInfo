@@ -2,9 +2,7 @@ package ir.orangehat.movieinfo.bussines.model;
 
 import android.media.Rating;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Movie
