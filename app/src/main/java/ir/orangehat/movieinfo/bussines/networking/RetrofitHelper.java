@@ -34,10 +34,14 @@ public class RetrofitHelper {
         retrofit.build();
     }
 
-    public <T> T getService(Class<T> tService){
-       return retrofit.build().create(tService);
+    public <T> T getService(Class<T> tService) {
+        return retrofit.build().create(tService);
     }
 
+    public interface ApiListener<T> {
 
+        void onSuccess(T t);
 
+        void onError(Throwable throwable);
+    }
 }

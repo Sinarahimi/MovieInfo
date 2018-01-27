@@ -15,10 +15,7 @@ import ir.orangehat.movieinfo.bussines.model.Movie;
  */
 
 @Dao
-public interface MovieDao {
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(ArrayList<Movie> movieArrayList);
+public interface MovieDao extends BaseDao<Movie> {
 
     @Query("select * from Movie")
     LiveData<ArrayList<Movie>> getAll();
