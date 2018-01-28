@@ -7,6 +7,7 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ir.orangehat.movieinfo.bussines.model.Movie;
 
@@ -18,6 +19,6 @@ import ir.orangehat.movieinfo.bussines.model.Movie;
 public interface MovieDao extends BaseDao<Movie> {
 
     @Query("select * from Movie")
-    LiveData<ArrayList<Movie>> getAll();
+    LiveData<List<Movie>> getAll();
 }
 

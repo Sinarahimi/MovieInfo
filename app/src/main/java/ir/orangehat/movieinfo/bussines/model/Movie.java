@@ -3,6 +3,7 @@ package ir.orangehat.movieinfo.bussines.model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.media.Rating;
+import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class Movie {
 
     @PrimaryKey
+    @NonNull
     private String imdbID;
 
     @SerializedName("Title")
@@ -52,8 +54,6 @@ public class Movie {
 
     @SerializedName("Awards")
     private String awards;
-
-    private List<Rating> ratings = null;
 
     private String imdbRating;
 
@@ -165,14 +165,6 @@ public class Movie {
 
     public void setAwards(String awards) {
         this.awards = awards;
-    }
-
-    public List<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
     }
 
     public String getImdbRating() {

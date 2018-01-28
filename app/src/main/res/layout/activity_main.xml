@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ir.orangehat.movieinfo.application.MainActivity">
+    tools:context="ir.orangehat.movieinfo.application.home.HomeActivity">
 
 
 </android.support.constraint.ConstraintLayout>

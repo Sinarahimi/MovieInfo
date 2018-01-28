@@ -3,6 +3,7 @@ package ir.orangehat.movieinfo.bussines.networking.api;
 import android.arch.lifecycle.LiveData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ir.orangehat.movieinfo.bussines.model.Movie;
 import retrofit2.http.GET;
@@ -16,5 +17,5 @@ import retrofit2.http.GET;
 
 public interface MovieApi {
     @GET("/?s=Batman&page=1&apikey=96099fe3")
-    LiveData<ArrayList<Movie>> getMovieList();
+    LiveData<List<Movie>> getMovieList();
 }

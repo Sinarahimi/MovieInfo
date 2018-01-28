@@ -1,16 +1,16 @@
 package ir.orangehat.movieinfo.bussines.persistance.database;
 
-import android.arch.lifecycle.LiveData;
-
-import java.util.ArrayList;
+import android.content.Context;
 
 /**
- * BaseDatabaseHelper
+ * Base databaseHelper
  */
 
-abstract class BaseDatabaseHelper<T> {
+class BaseDatabaseHelper {
 
-    abstract LiveData<ArrayList<T>> getAll();
+    AppDatabase appDatabase;
 
-    abstract void Save(T t);
+    BaseDatabaseHelper(Context context) {
+        appDatabase = AppDatabase.getInstance(context);
+    }
 }
