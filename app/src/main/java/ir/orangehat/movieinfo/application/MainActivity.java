@@ -1,7 +1,9 @@
-package ir.orangehat.movieinfo;
+package ir.orangehat.movieinfo.application;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import ir.orangehat.movieinfo.R;
 
 public class MainActivity extends AppCompatActivity {
 

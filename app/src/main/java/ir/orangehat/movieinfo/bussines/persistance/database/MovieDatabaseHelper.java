@@ -1,6 +1,7 @@
 package ir.orangehat.movieinfo.bussines.persistance.database;
 
 import android.arch.lifecycle.LiveData;
+import android.content.Context;
 
 import java.util.ArrayList;
 
@@ -15,10 +16,10 @@ public class MovieDatabaseHelper extends BaseDatabaseHelper<Movie> {
 
     private MovieDao movieDao;
 
-    public MovieDatabaseHelper() {
-
+    public MovieDatabaseHelper(Context context) {
+        AppDatabase appDatabase = AppDatabase.getInstance(context);
+        movieDao = appDatabase.getMovieDao();
     }
-
 
     @Override
     public LiveData<ArrayList<Movie>> getAll() {
