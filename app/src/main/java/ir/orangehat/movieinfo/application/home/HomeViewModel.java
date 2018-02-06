@@ -2,8 +2,8 @@ package ir.orangehat.movieinfo.application.home;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
@@ -16,16 +16,32 @@ import ir.orangehat.movieinfo.bussines.repository.MovieRepository;
  * HomeViewModel
  */
 
-public class HomeViewModel extends AndroidViewModel {
+class HomeViewModel extends AndroidViewModel {
 
     private MovieRepository movieRepository;
 
-    public HomeViewModel(@NonNull Application application, Context context, LifecycleOwner lifecycleOwner) {
+    HomeViewModel(@NonNull Application application, Context context) {
         super(application);
-        movieRepository = new MovieRepository(lifecycleOwner, context);
+        movieRepository = new MovieRepository(context);
     }
 
     LiveData<List<Movie>> getMovies() {
         return movieRepository.getMovies();
+    }
+
+    static class Factory implements ViewModelProvider.Factory {
+        private final Context context;
+        private final Application application;
+
+        public Factory(Application application, Context context) {
+            this.application = application;
+            this.context = context;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        public HomeViewModel create(Class modelClass) {
+            return new HomeViewModel(application, context);
+        }
     }
 }

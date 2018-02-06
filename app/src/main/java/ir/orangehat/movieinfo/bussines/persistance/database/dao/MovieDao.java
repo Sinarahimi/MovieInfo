@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.orangehat.movieinfo.bussines.model.Movie;
+import ir.orangehat.movieinfo.bussines.model.SearchResult;
 
 /**
  * MovieDao

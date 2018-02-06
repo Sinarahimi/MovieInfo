@@ -1,6 +1,7 @@
 package ir.orangehat.movieinfo.application.home;
 
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +21,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        ViewModelProvider.Factory factory = new HomeViewModel.Factory(getApplication(), getApplicationContext());
+
+        HomeViewModel homeViewModel = ViewModelProviders.of(this,factory).get(HomeViewModel.class);
 
         homeViewModel.getMovies().observe(HomeActivity.this, new Observer<List<Movie>>() {
             @Override

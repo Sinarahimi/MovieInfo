@@ -43,12 +43,6 @@ public class Movie {
     @SerializedName("Director")
     private String director;
 
-    @SerializedName("Actors")
-    private String actors;
-
-    @SerializedName("Actors")
-    private String language;
-
     @SerializedName("Country")
     private String country;
 
@@ -133,22 +127,6 @@ public class Movie {
 
     public void setDirector(String director) {
         this.director = director;
-    }
-
-    public String getActors() {
-        return actors;
-    }
-
-    public void setActors(String actors) {
-        this.actors = actors;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
     }
 
     public String getCountry() {

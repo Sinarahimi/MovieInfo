@@ -1,12 +1,8 @@
 package ir.orangehat.movieinfo.bussines.networking.api;
 
-import android.arch.lifecycle.LiveData;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import ir.orangehat.movieinfo.bussines.model.Movie;
+import ir.orangehat.movieinfo.bussines.model.SearchResult;
 import retrofit2.http.GET;
+import rx.Observable;
 
 /**
  * MovieApi
@@ -17,5 +13,5 @@ import retrofit2.http.GET;
 
 public interface MovieApi {
     @GET("/?s=Batman&page=1&apikey=96099fe3")
-    LiveData<List<Movie>> getMovieList();
+    Observable<SearchResult> getMovieList();
 }

@@ -2,17 +2,19 @@ package ir.orangehat.movieinfo.bussines.repository;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
 import android.content.Context;
-import android.support.annotation.Nullable;
+import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ir.orangehat.movieinfo.bussines.model.Movie;
+import ir.orangehat.movieinfo.bussines.model.SearchResult;
 import ir.orangehat.movieinfo.bussines.networking.api.MovieApi;
 import ir.orangehat.movieinfo.bussines.persistance.database.MovieDatabaseHelper;
-import ir.orangehat.movieinfo.bussines.persistance.database.dao.MovieDao;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * MovieRepository
@@ -20,22 +22,29 @@ import ir.orangehat.movieinfo.bussines.persistance.database.dao.MovieDao;
 
 public class MovieRepository extends BaseRepository {
 
-    private LifecycleOwner lifecycleOwner;
     private MovieApi movieApi;
     private MovieDatabaseHelper movieDatabaseHelper;
 
-    public MovieRepository(LifecycleOwner lifecycleOwner, Context context) {
-        this.lifecycleOwner = lifecycleOwner;
+    public MovieRepository(Context context) {
         movieApi = getRetrofitHelper().getService(MovieApi.class);
         movieDatabaseHelper = new MovieDatabaseHelper(context);
     }
 
     public LiveData<List<Movie>> getMovies() {
-        LiveData<List<Movie>> moviesLiveData = movieApi.getMovieList();
-        moviesLiveData.observe(lifecycleOwner, new Observer<List<Movie>>() {
+        Observable<SearchResult> resultObservable = movieApi.getMovieList();
+        resultObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<SearchResult>() {
             @Override
-            public void onChanged(@Nullable List<Movie> movieArrayList) {
-                movieDatabaseHelper.Save(movieArrayList);
+            public void call(SearchResult searchResult) {
+                if (!searchResult.isResponse()) {
+                    Log.i("Repository", "not respond");
+                } else {
+                    movieDatabaseHelper.save(searchResult.getSearch());
+                }
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                Log.i("Repository", throwable.getMessage());
             }
         });
 

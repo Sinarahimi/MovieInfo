@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.orangehat.movieinfo.bussines.model.Movie;
+import ir.orangehat.movieinfo.bussines.model.SearchResult;
 import ir.orangehat.movieinfo.bussines.persistance.database.dao.MovieDao;
 
 /**
@@ -26,11 +27,7 @@ public class MovieDatabaseHelper extends BaseDatabaseHelper {
         return movieDao.getAll();
     }
 
-    public void Save(Movie movie) {
-        movieDao.insert(movie);
-    }
-
-    public void Save(List<Movie> movies) {
+    public void save(List<Movie> movies) {
         movieDao.insert(movies);
     }
 }

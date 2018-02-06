@@ -1,5 +1,7 @@
 package ir.orangehat.movieinfo.bussines.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -7,13 +9,36 @@ import java.util.ArrayList;
  */
 
 public class SearchResult {
-    private ArrayList<Movie> movies;
 
-    public ArrayList<Movie> getMovies() {
-        return movies;
+    @SerializedName("Search")
+    private ArrayList<Movie> search;
+
+    private int totalResults;
+
+    @SerializedName("Response")
+    private boolean response;
+
+    public ArrayList<Movie> getSearch() {
+        return search;
     }
 
-    public void setMovies(ArrayList<Movie> movies) {
-        this.movies = movies;
+    public void setSearch(ArrayList<Movie> search) {
+        this.search = search;
+    }
+
+    public int getTotalResults() {
+        return totalResults;
+    }
+
+    public void setTotalResults(int totalResults) {
+        this.totalResults = totalResults;
+    }
+
+    public boolean isResponse() {
+        return response;
+    }
+
+    public void setResponse(boolean response) {
+        this.response = response;
     }
 }
