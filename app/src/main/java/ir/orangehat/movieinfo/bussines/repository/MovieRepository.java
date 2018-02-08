@@ -1,6 +1,5 @@
 package ir.orangehat.movieinfo.bussines.repository;
 
-import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.util.Log;
@@ -11,7 +10,8 @@ import ir.orangehat.movieinfo.bussines.model.Movie;
 import ir.orangehat.movieinfo.bussines.model.SearchResult;
 import ir.orangehat.movieinfo.bussines.networking.api.MovieApi;
 import ir.orangehat.movieinfo.bussines.persistance.database.MovieDatabaseHelper;
-import rx.Observable;
+import retrofit2.Response;
+import rx.Single;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -31,22 +31,17 @@ public class MovieRepository extends BaseRepository {
     }
 
     public LiveData<List<Movie>> getMovies() {
-        Observable<SearchResult> resultObservable = movieApi.getMovieList();
-        resultObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<SearchResult>() {
+        Single<Response<SearchResult>> resultObservable = movieApi.getMovieList();
+        resultObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Response<SearchResult>>() {
             @Override
-            public void call(SearchResult searchResult) {
-                if (!searchResult.isResponse()) {
+            public void call(Response<SearchResult> searchResult) {
+                if (!searchResult.isSuccessful()) {
                     Log.i("Repository", "not respond");
                 } else {
-                    movieDatabaseHelper.save(searchResult.getSearch());
+                    movieDatabaseHelper.save(searchResult.body().getSearch());
                 }
             }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                Log.i("Repository", throwable.getMessage());
-            }
-        });
+        }, throwable -> Log.i("Repository", throwable.getMessage()));
 
         return movieDatabaseHelper.getAll();
     }
