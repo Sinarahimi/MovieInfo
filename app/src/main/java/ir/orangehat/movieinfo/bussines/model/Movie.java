@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Writer;
 import java.util.List;
 
 /**

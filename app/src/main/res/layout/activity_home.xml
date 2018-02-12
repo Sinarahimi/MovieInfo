@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorMainBackground"
     tools:context=".application.ui.home.HomeActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginBottom="32dp"
         android:src="@drawable/ic_batman"
         app:layout_constraintBottom_toTopOf="@+id/guide"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +21,7 @@
         android:id="@+id/discreteScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         app:dsv_orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/guide" />
 

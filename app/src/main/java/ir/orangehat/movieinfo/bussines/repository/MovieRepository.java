@@ -13,7 +13,6 @@ import ir.orangehat.movieinfo.bussines.persistance.database.MovieDatabaseHelper;
 import retrofit2.Response;
 import rx.Single;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -32,14 +31,11 @@ public class MovieRepository extends BaseRepository {
 
     public LiveData<List<Movie>> getMovies() {
         Single<Response<SearchResult>> resultObservable = movieApi.getMovieList();
-        resultObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Response<SearchResult>>() {
-            @Override
-            public void call(Response<SearchResult> searchResult) {
-                if (!searchResult.isSuccessful()) {
-                    Log.i("Repository", "not respond");
-                } else {
-                    movieDatabaseHelper.save(searchResult.body().getSearch());
-                }
+        resultObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(searchResult -> {
+            if (!searchResult.isSuccessful()) {
+                Log.i("Repository", "not respond");
+            } else {
+                movieDatabaseHelper.save(searchResult.body().getSearch());
             }
         }, throwable -> Log.i("Repository", throwable.getMessage()));
 
