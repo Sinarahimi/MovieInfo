@@ -14,6 +14,7 @@ import ir.orangehat.movieinfo.bussines.persistance.database.dao.MovieDao;
  * MovieDatabaseHelper
  */
 
+
 public class MovieDatabaseHelper extends BaseDatabaseHelper {
 
     private MovieDao movieDao;
