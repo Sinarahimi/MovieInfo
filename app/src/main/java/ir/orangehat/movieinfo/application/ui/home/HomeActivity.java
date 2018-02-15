@@ -25,14 +25,7 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_home);
 
 
-        discreteScrollView = findViewById(R.id.discreteScrollView);
-        discreteScrollView.setOffscreenItems(5);
-        discreteScrollView.setItemTransformer(new ScaleTransformer.Builder()
-                .setMaxScale(1f)
-                .setMinScale(0.9f)
-                .setPivotX(Pivot.X.CENTER) // CENTER is a default one
-                .setPivotY(Pivot.Y.BOTTOM) // CENTER is a default one
-                .build());
+        discreteScrollViewSetup();
 
         HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
@@ -44,5 +37,16 @@ public class HomeActivity extends BaseActivity {
                 discreteScrollView.setAdapter(wrapper);
             }
         });
+    }
+
+    private void discreteScrollViewSetup() {
+        discreteScrollView = findViewById(R.id.discreteScrollView);
+        discreteScrollView.setOffscreenItems(5);
+        discreteScrollView.setItemTransformer(new ScaleTransformer.Builder()
+                .setMaxScale(1f)
+                .setMinScale(0.9f)
+                .setPivotX(Pivot.X.CENTER) // CENTER is a default one
+                .setPivotY(Pivot.Y.BOTTOM) // CENTER is a default one
+                .build());
     }
 }

@@ -3,17 +3,14 @@ package ir.orangehat.movieinfo.bussines.persistance.database;
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ir.orangehat.movieinfo.bussines.model.Movie;
-import ir.orangehat.movieinfo.bussines.model.SearchResult;
 import ir.orangehat.movieinfo.bussines.persistance.database.dao.MovieDao;
 
 /**
  * MovieDatabaseHelper
  */
-
 
 public class MovieDatabaseHelper extends BaseDatabaseHelper {
 
