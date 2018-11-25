@@ -2,7 +2,6 @@ package ir.orangehat.movieinfo.bussines.networking;
 
 import ir.orangehat.movieinfo.BuildConfig;
 import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Response;
 import retrofit2.Retrofit;

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="200dp"
-    android:layout_height="450dp"
+    android:layout_height="400dp"
+    app:cardCornerRadius="8dp"
     app:cardElevation="2dp">
 
     <android.support.constraint.ConstraintLayout
@@ -15,11 +15,11 @@
         <ImageView
             android:id="@+id/imageViewPoster"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="268dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             app:layout_constraintDimensionRatio="H,9:16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,15 +27,15 @@
             app:srcCompat="@mipmap/ic_launcher" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonImdb"
             android:layout_width="130dp"
             android:layout_height="40dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:background="@color/colorImdbButton"
-            android:text="Button"
+            android:text="@string/IMDB"
             android:textColor="@android:color/white"
+            android:background="@color/colorImdbButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -48,8 +48,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:gravity="center"
+            android:textColor="@color/colorText"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewPoster" />
@@ -62,8 +63,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="TextView"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
+            android:textColor="@color/colorText"
+            android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />

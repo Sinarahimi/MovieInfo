@@ -3,7 +3,6 @@ package ir.orangehat.movieinfo.bussines.networking.api;
 import ir.orangehat.movieinfo.bussines.model.SearchResult;
 import retrofit2.Response;
 import retrofit2.http.GET;
-import rx.Observable;
 import rx.Single;
 
 /**
