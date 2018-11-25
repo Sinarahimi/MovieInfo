@@ -6,6 +6,8 @@ import android.util.Log;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import ir.orangehat.movieinfo.bussines.model.Movie;
 import ir.orangehat.movieinfo.bussines.model.SearchResult;
 import ir.orangehat.movieinfo.bussines.networking.api.MovieApi;
@@ -16,6 +18,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
+ *
  * MovieRepository
  */
 
@@ -24,6 +27,7 @@ public class MovieRepository extends BaseRepository {
     private MovieApi movieApi;
     private MovieDatabaseHelper movieDatabaseHelper;
 
+    @Inject
     public MovieRepository(Context context) {
         movieApi = getRetrofitHelper().getService(MovieApi.class);
         movieDatabaseHelper = new MovieDatabaseHelper(context);
@@ -38,6 +42,7 @@ public class MovieRepository extends BaseRepository {
                 movieDatabaseHelper.save(searchResult.body().getSearch());
             }
         }, throwable -> Log.i("Repository", throwable.getMessage()));
+
 
         return movieDatabaseHelper.getAll();
     }

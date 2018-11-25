@@ -6,7 +6,7 @@ import android.content.Context;
  * Base databaseHelper
  */
 
-class BaseDatabaseHelper {
+public class BaseDatabaseHelper {
 
     AppDatabase appDatabase;
 
